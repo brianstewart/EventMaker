@@ -2,6 +2,8 @@
 
 @implementation EventsViewController {
     NSMutableArray *_events;
+    NSMutableArray *_finishedEvents;
+    NSMutableArray *_currentEvents;
 }
 
 - (void)viewDidLoad {
@@ -9,6 +11,9 @@
     
     // Load the array with all our events
     _events = [NSMutableArray arrayWithObject:@""];
+    
+    _finishedEvents = [NSMutableArray arrayWithArray:_events];
+    _currentEvents  = [NSMutableArray arrayWithObjects:@"",@"", nil];
 }
 
 - (void)viewDidUnload {
@@ -16,12 +21,20 @@
 }
 
 #pragma mark - Table view data source
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    if (section == 0)
+        return @"Finished events";
+    return @"Current events";
+}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return _events.count;
+    if (section == 0)
+        return _finishedEvents.count;
+    return _currentEvents.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -39,6 +52,7 @@
     UILabel *photos = (UILabel *)[cell viewWithTag:kPhotosTag];
     
     // Style the image view
+//    imageView.backgroundColor = [UIColor whiteColor];
     imageView.layer.borderColor   = [UIColor whiteColor].CGColor;
     imageView.layer.borderWidth   = 2.0;
     imageView.layer.shadowColor   = [UIColor blackColor].CGColor;
@@ -54,10 +68,16 @@
     return cell;
 }
 
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.section == 0)
+        return NO;
+    return YES;
+}
+
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [_events removeObjectAtIndex:indexPath.row];
+        [_currentEvents removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
     else if (editingStyle == UITableViewCellEditingStyleInsert) {
@@ -83,7 +103,7 @@
 
 #pragma mark - NewEvent delegate
 - (void)newEventViewControllerDidFinish {
-    [_events addObject:@""];
+    [_currentEvents addObject:@""];
     [self.tableView reloadData];
 }
 

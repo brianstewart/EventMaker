@@ -21,6 +21,9 @@
 		89C1430215D6D8710022C205 /* EventsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89C1430115D6D8710022C205 /* EventsViewController.m */; };
 		89C1430415D6DA650022C205 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89C1430315D6DA650022C205 /* QuartzCore.framework */; };
 		89C1430715D6FCB50022C205 /* NewEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89C1430615D6FCB50022C205 /* NewEventViewController.m */; };
+		89C1430E15D707BB0022C205 /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = 89C1430D15D707BB0022C205 /* Event.m */; };
+		89C1431115D708970022C205 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89C1431015D708970022C205 /* AssetsLibrary.framework */; };
+		89C1431415D708C50022C205 /* PhotoLibrary.m in Sources */ = {isa = PBXBuildFile; fileRef = 89C1431315D708C50022C205 /* PhotoLibrary.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +51,11 @@
 		89C1430315D6DA650022C205 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		89C1430515D6FCB50022C205 /* NewEventViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewEventViewController.h; sourceTree = "<group>"; };
 		89C1430615D6FCB50022C205 /* NewEventViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewEventViewController.m; sourceTree = "<group>"; };
+		89C1430C15D707BB0022C205 /* Event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Event.h; sourceTree = "<group>"; };
+		89C1430D15D707BB0022C205 /* Event.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Event.m; sourceTree = "<group>"; };
+		89C1431015D708970022C205 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		89C1431215D708C50022C205 /* PhotoLibrary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PhotoLibrary.h; path = ../PhotoLibrary.h; sourceTree = "<group>"; };
+		89C1431315D708C50022C205 /* PhotoLibrary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PhotoLibrary.m; path = ../PhotoLibrary.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +63,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				89C1431115D708970022C205 /* AssetsLibrary.framework in Frameworks */,
 				89C1430415D6DA650022C205 /* QuartzCore.framework in Frameworks */,
 				89C142D315D6D5710022C205 /* UIKit.framework in Frameworks */,
 				89C142D515D6D5710022C205 /* Foundation.framework in Frameworks */,
@@ -85,6 +94,7 @@
 		89C142D115D6D5710022C205 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				89C1431015D708970022C205 /* AssetsLibrary.framework */,
 				89C1430315D6DA650022C205 /* QuartzCore.framework */,
 				89C142D215D6D5710022C205 /* UIKit.framework */,
 				89C142D415D6D5710022C205 /* Foundation.framework */,
@@ -163,6 +173,10 @@
 		89C142FF15D6D6460022C205 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				89C1431215D708C50022C205 /* PhotoLibrary.h */,
+				89C1431315D708C50022C205 /* PhotoLibrary.m */,
+				89C1430C15D707BB0022C205 /* Event.h */,
+				89C1430D15D707BB0022C205 /* Event.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -238,6 +252,8 @@
 				89C142FA15D6D5CA0022C205 /* UIColor+BSColors.m in Sources */,
 				89C1430215D6D8710022C205 /* EventsViewController.m in Sources */,
 				89C1430715D6FCB50022C205 /* NewEventViewController.m in Sources */,
+				89C1430E15D707BB0022C205 /* Event.m in Sources */,
+				89C1431415D708C50022C205 /* PhotoLibrary.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -353,6 +369,7 @@
 				89C142EE15D6D5710022C205 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
