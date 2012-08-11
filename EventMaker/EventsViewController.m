@@ -7,6 +7,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    // Load the array with all our events
     _events = [NSMutableArray arrayWithObject:@""];
 }
 
@@ -31,11 +32,13 @@
 #define kDateTag      101
 #define kPhotosTag    102
     
+    // Grab the parts of the cell
     UIImageView *imageView = (UIImageView *)[cell viewWithTag:kImageViewTag];
     UILabel *name = (UILabel *)[cell viewWithTag:kNameTag];
     UILabel *date = (UILabel *)[cell viewWithTag:kDateTag];
     UILabel *photos = (UILabel *)[cell viewWithTag:kPhotosTag];
     
+    // Style the image view
     imageView.layer.borderColor   = [UIColor whiteColor].CGColor;
     imageView.layer.borderWidth   = 2.0;
     imageView.layer.shadowColor   = [UIColor blackColor].CGColor;
@@ -43,10 +46,10 @@
     imageView.layer.shadowRadius  = 2.0;
     imageView.layer.shadowOffset  = CGSizeMake(1.0, 1.0);
     
-    name.text = @"EVENT";
-    date.text = @"WHENEVER";
+    // Add the text
+    name.text = @"Event";
+    date.text = @"July 14 - July 15";
     photos.text = @"14 PHOTOS";
-    
     
     return cell;
 }
@@ -61,9 +64,7 @@
     }   
 }
 
-//// Override to support rearranging the table view.
-//- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-//{
+//- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
 //}
 
 #pragma mark - Table view delegate
