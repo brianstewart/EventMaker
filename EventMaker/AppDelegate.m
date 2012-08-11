@@ -4,7 +4,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    dbgLog(@"Build: %@",currentVersion());
+//    dbgLog(@"Build: %@",currentVersion());
     
     return YES;
 }

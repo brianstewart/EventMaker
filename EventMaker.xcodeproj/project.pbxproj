@@ -20,6 +20,7 @@
 		89C142FA15D6D5CA0022C205 /* UIColor+BSColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 89C142F615D6D5CA0022C205 /* UIColor+BSColors.m */; };
 		89C1430215D6D8710022C205 /* EventsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89C1430115D6D8710022C205 /* EventsViewController.m */; };
 		89C1430415D6DA650022C205 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89C1430315D6DA650022C205 /* QuartzCore.framework */; };
+		89C1430715D6FCB50022C205 /* NewEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89C1430615D6FCB50022C205 /* NewEventViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +46,8 @@
 		89C1430015D6D8710022C205 /* EventsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventsViewController.h; sourceTree = "<group>"; };
 		89C1430115D6D8710022C205 /* EventsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventsViewController.m; sourceTree = "<group>"; };
 		89C1430315D6DA650022C205 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		89C1430515D6FCB50022C205 /* NewEventViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewEventViewController.h; sourceTree = "<group>"; };
+		89C1430615D6FCB50022C205 /* NewEventViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewEventViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +146,8 @@
 			children = (
 				89C1430015D6D8710022C205 /* EventsViewController.h */,
 				89C1430115D6D8710022C205 /* EventsViewController.m */,
+				89C1430515D6FCB50022C205 /* NewEventViewController.h */,
+				89C1430615D6FCB50022C205 /* NewEventViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -232,6 +237,7 @@
 				89C142F915D6D5CA0022C205 /* NSObject+Blocks.m in Sources */,
 				89C142FA15D6D5CA0022C205 /* UIColor+BSColors.m in Sources */,
 				89C1430215D6D8710022C205 /* EventsViewController.m in Sources */,
+				89C1430715D6FCB50022C205 /* NewEventViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

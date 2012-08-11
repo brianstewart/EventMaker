@@ -1,9 +1,7 @@
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
+#import "NewEventViewController.h"
 
-@interface EventsViewController : UITableViewController
-
-#pragma mark - Actions
-- (IBAction)newEvent:(id)sender;
+@interface EventsViewController : UITableViewController <NewEventViewControllerDelegate>
 
 @end

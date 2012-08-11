@@ -1,9 +1,13 @@
 #import "EventsViewController.h"
 
-@implementation EventsViewController
+@implementation EventsViewController {
+    NSMutableArray *_events;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    _events = [NSMutableArray arrayWithObject:@""];
 }
 
 - (void)viewDidUnload {
@@ -16,7 +20,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 1;
+    return _events.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -47,52 +51,48 @@
     return cell;
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
+        [_events removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
+    }
     else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }   
 }
-*/
 
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
+//// Override to support rearranging the table view.
+//- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
+//{
+//}
 
 #pragma mark - Table view delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
-#pragma mark - Actions
-- (IBAction)newEvent:(id)sender {
-    [BSAlert alert];
+#pragma mark - Prepare for segue
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"NewEvent"]) {
+        UINavigationController *navController = (UINavigationController *)segue.destinationViewController;
+        NewEventViewController *viewController = (NewEventViewController *)[[navController viewControllers] objectAtIndex:0];
+        viewController.delegate = self;
+    }
 }
+
+#pragma mark - NewEvent delegate
+- (void)newEventViewControllerDidFinish {
+    [_events addObject:@""];
+    [self.tableView reloadData];
+}
+
+- (void)newEventViewControllerDidCancel {
+}
+
 @end
+
+
+
+
+
+
