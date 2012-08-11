@@ -10,7 +10,7 @@
 @implementation BSAlert
 
 + (void)alert {
-    [[[BSAlert alloc] initWithTitle:@"This is custom alert" message:@"Cool huh?" delegate:nil cancelButtonTitle:@"cool" otherButtonTitles:nil, nil] show];
+    [[[BSAlert alloc] initWithTitle:@"This is a custom alert" message:@"Cool huh?" delegate:nil cancelButtonTitle:@"cool" otherButtonTitles:nil, nil] show];
 }
 
 - (void)layoutSubviews {

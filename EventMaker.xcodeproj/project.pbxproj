@@ -14,11 +14,12 @@
 		89C142DF15D6D5710022C205 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 89C142DE15D6D5710022C205 /* main.m */; };
 		89C142E315D6D5710022C205 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 89C142E215D6D5710022C205 /* AppDelegate.m */; };
 		89C142E615D6D5710022C205 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 89C142E415D6D5710022C205 /* MainStoryboard.storyboard */; };
-		89C142E915D6D5710022C205 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89C142E815D6D5710022C205 /* ViewController.m */; };
 		89C142F715D6D5CA0022C205 /* BSAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 89C142F015D6D5CA0022C205 /* BSAlert.m */; };
 		89C142F815D6D5CA0022C205 /* Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 89C142F215D6D5CA0022C205 /* Common.m */; };
 		89C142F915D6D5CA0022C205 /* NSObject+Blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 89C142F415D6D5CA0022C205 /* NSObject+Blocks.m */; };
 		89C142FA15D6D5CA0022C205 /* UIColor+BSColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 89C142F615D6D5CA0022C205 /* UIColor+BSColors.m */; };
+		89C1430215D6D8710022C205 /* EventsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89C1430115D6D8710022C205 /* EventsViewController.m */; };
+		89C1430415D6DA650022C205 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89C1430315D6DA650022C205 /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,8 +34,6 @@
 		89C142E115D6D5710022C205 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		89C142E215D6D5710022C205 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		89C142E515D6D5710022C205 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
-		89C142E715D6D5710022C205 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		89C142E815D6D5710022C205 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		89C142EF15D6D5CA0022C205 /* BSAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSAlert.h; sourceTree = "<group>"; };
 		89C142F015D6D5CA0022C205 /* BSAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSAlert.m; sourceTree = "<group>"; };
 		89C142F115D6D5CA0022C205 /* Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
@@ -43,6 +42,9 @@
 		89C142F415D6D5CA0022C205 /* NSObject+Blocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Blocks.m"; sourceTree = "<group>"; };
 		89C142F515D6D5CA0022C205 /* UIColor+BSColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+BSColors.h"; sourceTree = "<group>"; };
 		89C142F615D6D5CA0022C205 /* UIColor+BSColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+BSColors.m"; sourceTree = "<group>"; };
+		89C1430015D6D8710022C205 /* EventsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventsViewController.h; sourceTree = "<group>"; };
+		89C1430115D6D8710022C205 /* EventsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventsViewController.m; sourceTree = "<group>"; };
+		89C1430315D6DA650022C205 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,6 +52,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				89C1430415D6DA650022C205 /* QuartzCore.framework in Frameworks */,
 				89C142D315D6D5710022C205 /* UIKit.framework in Frameworks */,
 				89C142D515D6D5710022C205 /* Foundation.framework in Frameworks */,
 				89C142D715D6D5710022C205 /* CoreGraphics.framework in Frameworks */,
@@ -79,6 +82,7 @@
 		89C142D115D6D5710022C205 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				89C1430315D6DA650022C205 /* QuartzCore.framework */,
 				89C142D215D6D5710022C205 /* UIKit.framework */,
 				89C142D415D6D5710022C205 /* Foundation.framework */,
 				89C142D615D6D5710022C205 /* CoreGraphics.framework */,
@@ -137,8 +141,8 @@
 		89C142FD15D6D63B0022C205 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				89C142E715D6D5710022C205 /* ViewController.h */,
-				89C142E815D6D5710022C205 /* ViewController.m */,
+				89C1430015D6D8710022C205 /* EventsViewController.h */,
+				89C1430115D6D8710022C205 /* EventsViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -223,11 +227,11 @@
 			files = (
 				89C142DF15D6D5710022C205 /* main.m in Sources */,
 				89C142E315D6D5710022C205 /* AppDelegate.m in Sources */,
-				89C142E915D6D5710022C205 /* ViewController.m in Sources */,
 				89C142F715D6D5CA0022C205 /* BSAlert.m in Sources */,
 				89C142F815D6D5CA0022C205 /* Common.m in Sources */,
 				89C142F915D6D5CA0022C205 /* NSObject+Blocks.m in Sources */,
 				89C142FA15D6D5CA0022C205 /* UIColor+BSColors.m in Sources */,
+				89C1430215D6D8710022C205 /* EventsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
