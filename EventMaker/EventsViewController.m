@@ -1,4 +1,5 @@
 #import "EventsViewController.h"
+#import "Event.h"
 
 @implementation EventsViewController {
     NSMutableArray *_events;
@@ -9,11 +10,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    
+    Event *event1 = [[Event alloc] initEventWithName:@"Event" startDate:@"July 1, 2012" andEndDate:@"July 2, 2012"];
+    Event *event2 = [[Event alloc] initEventWithName:@"Something" startDate:@"July 3, 2012" andEndDate:@"July 8, 2012"];
+    Event *event3 = [[Event alloc] initEventWithName:@"Unfinished event" startDate:@"July 9, 2012" andEndDate:@"July 27, 2012"];
+    
     // Load the array with all our events
-    _events = [NSMutableArray arrayWithObject:@""];
+    _events = [NSMutableArray arrayWithObject:event1];
     
     _finishedEvents = [NSMutableArray arrayWithArray:_events];
-    _currentEvents  = [NSMutableArray arrayWithObjects:@"",@"", nil];
+    _currentEvents  = [NSMutableArray arrayWithObjects:event2,event3, nil];
 }
 
 - (void)viewDidUnload {
@@ -60,9 +66,17 @@
     imageView.layer.shadowRadius  = 2.0;
     imageView.layer.shadowOffset  = CGSizeMake(1.0, 1.0);
     
+    Event *event;
+    
     // Add the text
-    name.text = @"Event";
-    date.text = @"July 14 - July 15";
+    if (indexPath.section == 0) {
+        event = [_finishedEvents objectAtIndex:indexPath.row];
+    } else {
+        event = [_currentEvents objectAtIndex:indexPath.row];
+    }
+    
+    name.text = event.name;
+    date.text = [event.startDate stringByAppendingFormat:@" - %@",event.endDate];
     photos.text = @"14 PHOTOS";
     
     return cell;
@@ -102,8 +116,8 @@
 }
 
 #pragma mark - NewEvent delegate
-- (void)newEventViewControllerDidFinish {
-    [_currentEvents addObject:@""];
+- (void)newEventViewControllerDidFinishEvent:(Event *)event {
+    [_currentEvents addObject:event];
     [self.tableView reloadData];
 }
 

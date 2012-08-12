@@ -1,12 +1,32 @@
 #import "NewEventViewController.h"
+#import "Event.h"
 
-@implementation NewEventViewController
+@implementation NewEventViewController {
+    NSDateFormatter *_dateFormatter;
+    BOOL _showingDatePicker;
+    BOOL _startDateSelected;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    // Create a date formatter for converting dates into strings and such
+    _dateFormatter = [[NSDateFormatter alloc] init];
+    _dateFormatter.dateStyle = NSDateFormatterLongStyle;
+    
+    // Setup default dates for the start and end
+    _startDate.text = [_dateFormatter stringFromDate:[NSDate date]]; // Returns today
+    _endDate.text = [_dateFormatter stringFromDate:[[NSDate date] dateByAddingTimeInterval:60*60*24]]; // Returns tomorrow
+    
+    // We are not showing the date picker at the beginning
+    _showingDatePicker = NO;
 }
 
 - (void)viewDidUnload {
+    [self setNameTextField:nil];
+    [self setDatePicker:nil];
+    [self setStartDate:nil];
+    [self setEndDate:nil];
     [super viewDidUnload];
 }
 
@@ -78,16 +98,64 @@
 #pragma mark - Table view delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    if (indexPath.section != 0) {
+        _startDateSelected = (indexPath.section == 1) ? YES : NO; // Check which date was selected
+        if (!_showingDatePicker) {
+            [_nameTextField resignFirstResponder];
+            _showingDatePicker = YES;
+            _datePicker.hidden = NO;
+            _datePicker.frame = CGRectMake(_datePicker.frame.origin.x,
+                                           _datePicker.frame.origin.y + 400,
+                                           _datePicker.frame.size.width,
+                                           _datePicker.frame.size.height);
+            [UIView animateWithDuration:0.3 animations:^{
+                _datePicker.frame = CGRectMake(_datePicker.frame.origin.x,
+                                          _datePicker.frame.origin.y - 400,
+                                          _datePicker.frame.size.width,
+                                          _datePicker.frame.size.height);
+            }];
+        } else {
+            if (indexPath.section == 1) // Selected start date
+                [_datePicker setDate:[_dateFormatter dateFromString:_startDate.text] animated:YES];
+            else // Selected end date
+                [_datePicker setDate:[_dateFormatter dateFromString:_endDate.text] animated:YES];
+        }
+    }
+    
+    
+}
+
+#pragma mark - TextField delegate
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return YES;
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+    NSLog(@"here");
+    if (_showingDatePicker) {
+        _showingDatePicker = NO;
+        _datePicker.hidden = YES;
+    }
 }
 
 #pragma mark - Actions
 - (IBAction)done:(id)sender {
     [self dismissModalViewControllerAnimated:YES];
-    [_delegate newEventViewControllerDidFinish];
+    Event *event = [[Event alloc] initEventWithName:_nameTextField.text startDate:_startDate.text andEndDate:_endDate.text];
+    [_delegate newEventViewControllerDidFinishEvent:event];
 }
 
 - (IBAction)cancel:(id)sender {
     [self dismissModalViewControllerAnimated:YES];
     [_delegate newEventViewControllerDidCancel];
+}
+
+- (IBAction)dateChanged:(id)sender {
+    if (_startDateSelected)
+        _startDate.text = [_dateFormatter stringFromDate:_datePicker.date];
+    else
+        _endDate.text = [_dateFormatter stringFromDate:_datePicker.date];
 }
 @end

@@ -331,6 +331,7 @@
 		89C142ED15D6D5710022C205 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_WARN_OBJC_MISSING_PROPERTY_SYNTHESIS = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "EventMaker/EventMaker-Prefix.pch";
 				INFOPLIST_FILE = "EventMaker/EventMaker-Info.plist";
@@ -342,6 +343,7 @@
 		89C142EE15D6D5710022C205 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_WARN_OBJC_MISSING_PROPERTY_SYNTHESIS = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "EventMaker/EventMaker-Prefix.pch";
 				INFOPLIST_FILE = "EventMaker/EventMaker-Info.plist";
