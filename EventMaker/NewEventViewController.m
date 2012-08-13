@@ -122,8 +122,6 @@
                 [_datePicker setDate:[_dateFormatter dateFromString:_endDate.text] animated:YES];
         }
     }
-    
-    
 }
 
 #pragma mark - TextField delegate
@@ -133,7 +131,6 @@
 }
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
-    NSLog(@"here");
     if (_showingDatePicker) {
         _showingDatePicker = NO;
         _datePicker.hidden = YES;
@@ -142,8 +139,26 @@
 
 #pragma mark - Actions
 - (IBAction)done:(id)sender {
+    NSDate *start = [_dateFormatter dateFromString:_startDate.text];
+    NSDate *end = [_dateFormatter dateFromString:_endDate.text];
+    
+    // Don't save if the end date is before the start
+    if ([start laterDate:end] == start) {
+        [[[BSAlert alloc] initWithTitle:@"No thanks" message:@"The start date must be before the end date" delegate:nil
+                      cancelButtonTitle:@"Alright!" otherButtonTitles:nil] show];
+        return;
+    }
+    
+    // Don't save if event isn't named
+    if ([_nameTextField.text isEqualToString:@""]) {
+        [[[BSAlert alloc] initWithTitle:@"No thanks" message:@"You must name your event" delegate:nil
+                      cancelButtonTitle:@"Cool beans" otherButtonTitles:nil] show];
+        return;
+    }
+    
+    // Dismiss the view and give the event to the delegate
     [self dismissModalViewControllerAnimated:YES];
-    Event *event = [[Event alloc] initEventWithName:_nameTextField.text startDate:_startDate.text andEndDate:_endDate.text];
+    Event *event = [[Event alloc] initEventWithName:_nameTextField.text startDate:start andEndDate:end];
     [_delegate newEventViewControllerDidFinishEvent:event];
 }
 

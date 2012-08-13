@@ -8,7 +8,10 @@
 @property (nonatomic, strong) NSArray  *photos;
 
 -(id)initEventWithName:(NSString *)name
-             startDate:(NSString *)startDate
-            andEndDate:(NSString *)endDate;
+             startDate:(NSDate *)startDate
+            andEndDate:(NSDate *)endDate;
+
+#pragma mark - Date range
+-(NSString *)dateRange;
 
 @end

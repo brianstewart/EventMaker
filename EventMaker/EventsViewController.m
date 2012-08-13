@@ -2,7 +2,6 @@
 #import "Event.h"
 
 @implementation EventsViewController {
-    NSMutableArray *_events;
     NSMutableArray *_finishedEvents;
     NSMutableArray *_currentEvents;
 }
@@ -10,16 +9,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    
-    Event *event1 = [[Event alloc] initEventWithName:@"Event" startDate:@"July 1, 2012" andEndDate:@"July 2, 2012"];
-    Event *event2 = [[Event alloc] initEventWithName:@"Something" startDate:@"July 3, 2012" andEndDate:@"July 8, 2012"];
-    Event *event3 = [[Event alloc] initEventWithName:@"Unfinished event" startDate:@"July 9, 2012" andEndDate:@"July 27, 2012"];
-    
-    // Load the array with all our events
-    _events = [NSMutableArray arrayWithObject:event1];
-    
-    _finishedEvents = [NSMutableArray arrayWithArray:_events];
-    _currentEvents  = [NSMutableArray arrayWithObjects:event2,event3, nil];
+    // Load the arrays with all our finished and current events
+    _finishedEvents = [NSMutableArray array];
+    _currentEvents  = [NSMutableArray array];
 }
 
 - (void)viewDidUnload {
@@ -76,22 +68,25 @@
     }
     
     name.text = event.name;
-    date.text = [event.startDate stringByAppendingFormat:@" - %@",event.endDate];
+    date.text = [event dateRange];
     photos.text = @"14 PHOTOS";
     
     return cell;
 }
 
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == 0)
-        return NO;
-    return YES;
-}
+//- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+//    if (indexPath.section == 0)
+//        return NO;
+//    return YES;
+//}
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [_currentEvents removeObjectAtIndex:indexPath.row];
+        if (indexPath.section == 0)
+            [_finishedEvents removeObjectAtIndex:indexPath.row];
+        else
+            [_currentEvents removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
     else if (editingStyle == UITableViewCellEditingStyleInsert) {

@@ -24,6 +24,7 @@
 		89C1430E15D707BB0022C205 /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = 89C1430D15D707BB0022C205 /* Event.m */; };
 		89C1431115D708970022C205 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89C1431015D708970022C205 /* AssetsLibrary.framework */; };
 		89C1431415D708C50022C205 /* PhotoLibrary.m in Sources */ = {isa = PBXBuildFile; fileRef = 89C1431315D708C50022C205 /* PhotoLibrary.m */; };
+		89C1431715D883380022C205 /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = 89C1431615D883380022C205 /* Photo.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +57,8 @@
 		89C1431015D708970022C205 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		89C1431215D708C50022C205 /* PhotoLibrary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PhotoLibrary.h; path = ../PhotoLibrary.h; sourceTree = "<group>"; };
 		89C1431315D708C50022C205 /* PhotoLibrary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PhotoLibrary.m; path = ../PhotoLibrary.m; sourceTree = "<group>"; };
+		89C1431515D883380022C205 /* Photo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Photo.h; sourceTree = "<group>"; };
+		89C1431615D883380022C205 /* Photo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Photo.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +115,8 @@
 				89C142FD15D6D63B0022C205 /* Controller */,
 				89C142E115D6D5710022C205 /* AppDelegate.h */,
 				89C142E215D6D5710022C205 /* AppDelegate.m */,
+				89C1431515D883380022C205 /* Photo.h */,
+				89C1431615D883380022C205 /* Photo.m */,
 				89C142D915D6D5710022C205 /* Supporting Files */,
 			);
 			path = EventMaker;
@@ -254,6 +259,7 @@
 				89C1430715D6FCB50022C205 /* NewEventViewController.m in Sources */,
 				89C1430E15D707BB0022C205 /* Event.m in Sources */,
 				89C1431415D708C50022C205 /* PhotoLibrary.m in Sources */,
+				89C1431715D883380022C205 /* Photo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
