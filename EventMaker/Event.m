@@ -15,10 +15,10 @@
         
         _photos = [NSMutableArray array];
         
-        _startDate = [NSDateFormatter localizedStringFromDate:startDate dateStyle:NSDateFormatterLongStyle
-                                                    timeStyle:NSDateFormatterNoStyle];
-        _endDate = [NSDateFormatter localizedStringFromDate:endDate dateStyle:NSDateFormatterLongStyle
-                                                  timeStyle:NSDateFormatterNoStyle];
+        _startDate = [NSDateFormatter localizedStringFromDate:startDate dateStyle:NSDateFormatterMediumStyle
+                                                    timeStyle:NSDateFormatterShortStyle];
+        _endDate = [NSDateFormatter localizedStringFromDate:endDate dateStyle:NSDateFormatterMediumStyle
+                                                  timeStyle:NSDateFormatterShortStyle];
     }
     return self;
 }
@@ -30,7 +30,6 @@
 
 #pragma mark - Contains date
 - (BOOL)containsDate:(NSDate *)date {
-    
     if ([[_eventStartDate laterDate:date] isEqualToDate:date] && [[_eventEndDate laterDate:date] isEqualToDate:_eventEndDate])
         return YES;
     return NO;

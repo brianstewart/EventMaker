@@ -42,22 +42,12 @@ id daysAgo(int days, BOOL date) {
 }
 
 id nextHour(BOOL date) {
-    NSDate *today = [NSDate date];
-    NSDate *hour = [[NSDate date] dateByAddingTimeInterval:(60*60)];
-    
-    NSDate *theDate = [[NSDate date]
-                       dateByAddingTimeInterval:(hour.timeIntervalSinceReferenceDate - today.timeIntervalSinceReferenceDate)];
-    if (!date)
-        return [NSDateFormatter localizedStringFromDate:theDate dateStyle:NSDateFormatterNoStyle timeStyle:NSDateFormatterShortStyle];
-    else
-        return theDate;
+    return hourFromDate([NSDate date], date);
 }
 
-id hourFromDate(NSDate *someDate, BOOL date) {
-    NSDate *hour = [someDate dateByAddingTimeInterval:(60*60)];
-    
-    NSDate *theDate = [someDate
-                       dateByAddingTimeInterval:(hour.timeIntervalSinceReferenceDate - someDate.timeIntervalSinceReferenceDate)];
+id hourFromDate(NSDate *aDate, BOOL date) {
+    NSDate *hour = [aDate dateByAddingTimeInterval:(60*60)];
+    NSDate *theDate = [aDate dateByAddingTimeInterval:(hour.timeIntervalSinceReferenceDate - aDate.timeIntervalSinceReferenceDate)];
     if (!date)
         return [NSDateFormatter localizedStringFromDate:theDate dateStyle:NSDateFormatterNoStyle timeStyle:NSDateFormatterShortStyle];
     else
@@ -65,12 +55,15 @@ id hourFromDate(NSDate *someDate, BOOL date) {
 }
 
 id nextFiveMinuteInterval(BOOL date) {
-//    TODO: Make this actually work
-    NSDate *today = [NSDate date];
-    NSDate *five = [[NSDate date] dateByAddingTimeInterval:(60*5)];
+    NSDate *now = [NSDate date];
     
-    NSDate *theDate = [[NSDate date]
-                       dateByAddingTimeInterval:(five.timeIntervalSinceReferenceDate - today.timeIntervalSinceReferenceDate)];
+    // Find out how many minutes away we are from a five minute interval
+    int minutes = (int)(now.timeIntervalSinceReferenceDate / 60);
+    int minutesToInterval = (5 - (minutes % 5));
+    
+    NSDate *five = [now dateByAddingTimeInterval:(60 * minutesToInterval)];
+    NSDate *theDate = [now dateByAddingTimeInterval:(five.timeIntervalSinceReferenceDate - now.timeIntervalSinceReferenceDate)];
+    
     if (!date)
         return [NSDateFormatter localizedStringFromDate:theDate dateStyle:NSDateFormatterNoStyle timeStyle:NSDateFormatterShortStyle];
     else
