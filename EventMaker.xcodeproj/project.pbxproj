@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		890400F715D9E4B10064CC42 /* EventManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 890400F615D9E4B10064CC42 /* EventManager.m */; };
 		89C142D315D6D5710022C205 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89C142D215D6D5710022C205 /* UIKit.framework */; };
 		89C142D515D6D5710022C205 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89C142D415D6D5710022C205 /* Foundation.framework */; };
 		89C142D715D6D5710022C205 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89C142D615D6D5710022C205 /* CoreGraphics.framework */; };
@@ -28,6 +29,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		890400F515D9E4B10064CC42 /* EventManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventManager.h; sourceTree = "<group>"; };
+		890400F615D9E4B10064CC42 /* EventManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventManager.m; sourceTree = "<group>"; };
 		89C142CE15D6D5710022C205 /* EventMaker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EventMaker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		89C142D215D6D5710022C205 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		89C142D415D6D5710022C205 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -115,8 +118,8 @@
 				89C142FD15D6D63B0022C205 /* Controller */,
 				89C142E115D6D5710022C205 /* AppDelegate.h */,
 				89C142E215D6D5710022C205 /* AppDelegate.m */,
-				89C1431515D883380022C205 /* Photo.h */,
-				89C1431615D883380022C205 /* Photo.m */,
+				890400F515D9E4B10064CC42 /* EventManager.h */,
+				890400F615D9E4B10064CC42 /* EventManager.m */,
 				89C142D915D6D5710022C205 /* Supporting Files */,
 			);
 			path = EventMaker;
@@ -182,6 +185,8 @@
 				89C1431315D708C50022C205 /* PhotoLibrary.m */,
 				89C1430C15D707BB0022C205 /* Event.h */,
 				89C1430D15D707BB0022C205 /* Event.m */,
+				89C1431515D883380022C205 /* Photo.h */,
+				89C1431615D883380022C205 /* Photo.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -260,6 +265,7 @@
 				89C1430E15D707BB0022C205 /* Event.m in Sources */,
 				89C1431415D708C50022C205 /* PhotoLibrary.m in Sources */,
 				89C1431715D883380022C205 /* Photo.m in Sources */,
+				890400F715D9E4B10064CC42 /* EventManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

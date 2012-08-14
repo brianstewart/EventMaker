@@ -1,17 +1,22 @@
 #import "EventsViewController.h"
+#import "EventManager.h"
 #import "Event.h"
+#import "Photo.h"
 
 @implementation EventsViewController {
-    NSMutableArray *_finishedEvents;
-    NSMutableArray *_currentEvents;
+    EventManager *_eventManager;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Load the arrays with all our finished and current events
-    _finishedEvents = [NSMutableArray array];
-    _currentEvents  = [NSMutableArray array];
+    // Create the event manager
+    _eventManager = [[EventManager alloc] init];
+    
+    // Refresh after a few seconds
+    [self performBlock:^{
+        [self.tableView reloadData];
+    } AfterTimeInterval:3.0];
 }
 
 - (void)viewDidUnload {
@@ -31,8 +36,8 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (section == 0)
-        return _finishedEvents.count;
-    return _currentEvents.count;
+        return _eventManager.finishedEvents.count;
+    return _eventManager.currentEvents.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -58,18 +63,25 @@
     imageView.layer.shadowRadius  = 2.0;
     imageView.layer.shadowOffset  = CGSizeMake(1.0, 1.0);
     
+    // Get the currect event
     Event *event;
-    
-    // Add the text
     if (indexPath.section == 0) {
-        event = [_finishedEvents objectAtIndex:indexPath.row];
+        event = [_eventManager.finishedEvents objectAtIndex:indexPath.row];
     } else {
-        event = [_currentEvents objectAtIndex:indexPath.row];
+        event = [_eventManager.currentEvents objectAtIndex:indexPath.row];
     }
     
+    if (event.photos.count > 0)
+        imageView.image = ((Photo *)[event.photos objectAtIndex:0]).thumbnail;
+    
+    // Add the text
     name.text = event.name;
     date.text = [event dateRange];
-    photos.text = @"14 PHOTOS";
+    
+    int numberOfPhotos = event.photos.count;
+    NSString *photosString = [NSString stringWithFormat:@"%i %@",numberOfPhotos, (numberOfPhotos == 1) ? @"Photo": @"Photos"];
+    
+    photos.text = photosString;
     
     return cell;
 }
@@ -84,9 +96,9 @@
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         if (indexPath.section == 0)
-            [_finishedEvents removeObjectAtIndex:indexPath.row];
+            [_eventManager.finishedEvents removeObjectAtIndex:indexPath.row];
         else
-            [_currentEvents removeObjectAtIndex:indexPath.row];
+            [_eventManager.currentEvents removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
     else if (editingStyle == UITableViewCellEditingStyleInsert) {
@@ -112,8 +124,17 @@
 
 #pragma mark - NewEvent delegate
 - (void)newEventViewControllerDidFinishEvent:(Event *)event {
-    [_currentEvents addObject:event];
+    [_eventManager.currentEvents addObject:event];
+    
+    [_eventManager updateEvents];
+    
     [self.tableView reloadData];
+    
+    // Refresh after a few seconds
+    [self performBlock:^{
+        [self.tableView reloadData];
+    } AfterTimeInterval:3.0];
+    
 }
 
 - (void)newEventViewControllerDidCancel {

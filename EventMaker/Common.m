@@ -5,11 +5,46 @@ NSString* currentVersion(void) {
     return [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
 }
 
+#pragma mark - Date stuff
 NSString* timeStamp(void) {
     NSDate *now = [NSDate date];
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"yyyy-MM-dd HH:mm"];
     return [formatter stringFromDate:now];
+}
+
+id todaysDate(BOOL date) {
+    NSDate *theDate = [NSDate date];
+    if (!date)
+        return [NSDateFormatter localizedStringFromDate:theDate dateStyle:NSDateFormatterLongStyle timeStyle:NSDateFormatterNoStyle];
+    else
+        return theDate;
+}
+
+id tomorrowsDate(BOOL date) {
+    NSDate *theDate = [[NSDate date] dateByAddingTimeInterval:60*60*24];
+    if (!date)
+        return [NSDateFormatter localizedStringFromDate:theDate dateStyle:NSDateFormatterLongStyle timeStyle:NSDateFormatterNoStyle];
+    else
+        return theDate;
+}
+
+id dateFromToday(int days, BOOL date) {
+    if (days == 0) return todaysDate(date);
+    NSDate *theDate = [[NSDate date] dateByAddingTimeInterval:60*60*24*days];
+    if (!date)
+        return [NSDateFormatter localizedStringFromDate:theDate dateStyle:NSDateFormatterLongStyle timeStyle:NSDateFormatterNoStyle];
+    else
+        return theDate;
+}
+
+id daysAgo(int days, BOOL date) {
+    if (days == 0) return todaysDate(date);
+    NSDate *theDate = [[NSDate date] dateByAddingTimeInterval:60*60*24*(days * -1)];
+    if (!date)
+        return [NSDateFormatter localizedStringFromDate:theDate dateStyle:NSDateFormatterLongStyle timeStyle:NSDateFormatterNoStyle];
+    else
+        return theDate;
 }
 
 #pragma mark - Math

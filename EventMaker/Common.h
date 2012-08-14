@@ -1,7 +1,23 @@
 
 #pragma mark - General
 NSString* currentVersion(void);
+
+#pragma mark - Date stuff
 NSString* timeStamp(void);
+
+// simplifies date stuff
+// YES returns a date
+// NO  returns a string
+id todaysDate(BOOL);
+id tomorrowsDate(BOOL);
+
+// Returns a date the specified number of days from the today
+// 1st parameter is number of days
+// 2nd parameter is same as the rest
+id dateFromToday(int,BOOL);
+
+// Same as dateFromToday except it goes backward
+id daysAgo(int, BOOL);
 
 #pragma mark - Math
 

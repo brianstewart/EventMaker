@@ -15,8 +15,8 @@
     _dateFormatter.dateStyle = NSDateFormatterLongStyle;
     
     // Setup default dates for the start and end
-    _startDate.text = [_dateFormatter stringFromDate:[NSDate date]]; // Returns today
-    _endDate.text = [_dateFormatter stringFromDate:[[NSDate date] dateByAddingTimeInterval:60*60*24]]; // Returns tomorrow
+    _startDate.text = todaysDate(NO);
+    _endDate.text = tomorrowsDate(NO);
     
     // We are not showing the date picker at the beginning
     _showingDatePicker = NO;
