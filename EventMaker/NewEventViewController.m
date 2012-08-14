@@ -13,10 +13,13 @@
     // Create a date formatter for converting dates into strings and such
     _dateFormatter = [[NSDateFormatter alloc] init];
     _dateFormatter.dateStyle = NSDateFormatterLongStyle;
+    _dateFormatter.timeStyle = NSDateFormatterShortStyle;
     
     // Setup default dates for the start and end
-    _startDate.text = todaysDate(NO);
-    _endDate.text = tomorrowsDate(NO);
+    // The start date is the next five minute interval
+    // The end date is an hour after the start
+    _startDate.text = [_dateFormatter stringFromDate:nextFiveMinuteInterval(YES)];
+    _endDate.text = [_dateFormatter stringFromDate:hourFromDate(nextFiveMinuteInterval(YES), YES)];
     
     // We are not showing the date picker at the beginning
     _showingDatePicker = NO;

@@ -112,14 +112,12 @@
 		89C142D815D6D5710022C205 /* EventMaker */ = {
 			isa = PBXGroup;
 			children = (
-				89C142FB15D6D5CF0022C205 /* Helpers */,
+				89C142FB15D6D5CF0022C205 /* Libraries */,
 				89C142FF15D6D6460022C205 /* Model */,
 				89C142FE15D6D6410022C205 /* View */,
 				89C142FD15D6D63B0022C205 /* Controller */,
 				89C142E115D6D5710022C205 /* AppDelegate.h */,
 				89C142E215D6D5710022C205 /* AppDelegate.m */,
-				890400F515D9E4B10064CC42 /* EventManager.h */,
-				890400F615D9E4B10064CC42 /* EventManager.m */,
 				89C142D915D6D5710022C205 /* Supporting Files */,
 			);
 			path = EventMaker;
@@ -136,12 +134,12 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		89C142FB15D6D5CF0022C205 /* Helpers */ = {
+		89C142FB15D6D5CF0022C205 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
 				89C142FC15D6D60D0022C205 /* BSLibrary */,
 			);
-			name = Helpers;
+			name = Libraries;
 			sourceTree = "<group>";
 		};
 		89C142FC15D6D60D0022C205 /* BSLibrary */ = {
@@ -181,6 +179,8 @@
 		89C142FF15D6D6460022C205 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				890400F515D9E4B10064CC42 /* EventManager.h */,
+				890400F615D9E4B10064CC42 /* EventManager.m */,
 				89C1431215D708C50022C205 /* PhotoLibrary.h */,
 				89C1431315D708C50022C205 /* PhotoLibrary.m */,
 				89C1430C15D707BB0022C205 /* Event.h */,

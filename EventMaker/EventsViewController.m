@@ -10,8 +10,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Create the event manager
-    _eventManager = [[EventManager alloc] init];
+    // Get the event manager
+    _eventManager = [EventManager sharedManager];
     
     // Refresh after a few seconds
     [self performBlock:^{
@@ -124,17 +124,8 @@
 
 #pragma mark - NewEvent delegate
 - (void)newEventViewControllerDidFinishEvent:(Event *)event {
-    [_eventManager.currentEvents addObject:event];
-    
-    [_eventManager updateEvents];
-    
+    [_eventManager saveEvent:event];
     [self.tableView reloadData];
-    
-    // Refresh after a few seconds
-    [self performBlock:^{
-        [self.tableView reloadData];
-    } AfterTimeInterval:3.0];
-    
 }
 
 - (void)newEventViewControllerDidCancel {

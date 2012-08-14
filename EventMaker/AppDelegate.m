@@ -1,4 +1,5 @@
 #import "AppDelegate.h"
+#import "EventManager.h"
 
 @implementation AppDelegate
 
@@ -26,6 +27,10 @@
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
     dbgLog(@"Entering Foreground");
+    
+    // Update events with any new photos whenever we enter the app
+    [[EventManager sharedManager] updateEvents];
+    
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
 }
 

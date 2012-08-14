@@ -5,7 +5,7 @@ NSString* currentVersion(void);
 #pragma mark - Date stuff
 NSString* timeStamp(void);
 
-// simplifies date stuff
+// simplifies some date stuff
 // YES returns a date
 // NO  returns a string
 id todaysDate(BOOL);
@@ -14,13 +14,19 @@ id tomorrowsDate(BOOL);
 // Returns a date the specified number of days from the today
 // 1st parameter is number of days
 // 2nd parameter is same as the rest
-id dateFromToday(int,BOOL);
+id daysFromToday(int,BOOL);
 
 // Same as dateFromToday except it goes backward
 id daysAgo(int, BOOL);
 
-#pragma mark - Math
+// Returns the next hour of the date
+id nextHour(BOOL);
+id hourFromDate(NSDate*, BOOL);
 
+// Returns the next 5 minute interval of the date
+id nextFiveMinuteInterval(BOOL);
+
+#pragma mark - Math
 // 2*Pi; handy for trig math
 #define M_PI_X_2 3.14159265358979323846264338327950288 * 2
 double degreesToRadians(double);

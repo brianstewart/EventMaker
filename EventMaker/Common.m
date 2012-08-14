@@ -29,8 +29,7 @@ id tomorrowsDate(BOOL date) {
         return theDate;
 }
 
-id dateFromToday(int days, BOOL date) {
-    if (days == 0) return todaysDate(date);
+id daysFromToday(int days, BOOL date) {
     NSDate *theDate = [[NSDate date] dateByAddingTimeInterval:60*60*24*days];
     if (!date)
         return [NSDateFormatter localizedStringFromDate:theDate dateStyle:NSDateFormatterLongStyle timeStyle:NSDateFormatterNoStyle];
@@ -39,10 +38,41 @@ id dateFromToday(int days, BOOL date) {
 }
 
 id daysAgo(int days, BOOL date) {
-    if (days == 0) return todaysDate(date);
-    NSDate *theDate = [[NSDate date] dateByAddingTimeInterval:60*60*24*(days * -1)];
+    return daysFromToday((days * -1), date); // negative numbers go backwards
+}
+
+id nextHour(BOOL date) {
+    NSDate *today = [NSDate date];
+    NSDate *hour = [[NSDate date] dateByAddingTimeInterval:(60*60)];
+    
+    NSDate *theDate = [[NSDate date]
+                       dateByAddingTimeInterval:(hour.timeIntervalSinceReferenceDate - today.timeIntervalSinceReferenceDate)];
     if (!date)
-        return [NSDateFormatter localizedStringFromDate:theDate dateStyle:NSDateFormatterLongStyle timeStyle:NSDateFormatterNoStyle];
+        return [NSDateFormatter localizedStringFromDate:theDate dateStyle:NSDateFormatterNoStyle timeStyle:NSDateFormatterShortStyle];
+    else
+        return theDate;
+}
+
+id hourFromDate(NSDate *someDate, BOOL date) {
+    NSDate *hour = [someDate dateByAddingTimeInterval:(60*60)];
+    
+    NSDate *theDate = [someDate
+                       dateByAddingTimeInterval:(hour.timeIntervalSinceReferenceDate - someDate.timeIntervalSinceReferenceDate)];
+    if (!date)
+        return [NSDateFormatter localizedStringFromDate:theDate dateStyle:NSDateFormatterNoStyle timeStyle:NSDateFormatterShortStyle];
+    else
+        return theDate;
+}
+
+id nextFiveMinuteInterval(BOOL date) {
+//    TODO: Make this actually work
+    NSDate *today = [NSDate date];
+    NSDate *five = [[NSDate date] dateByAddingTimeInterval:(60*5)];
+    
+    NSDate *theDate = [[NSDate date]
+                       dateByAddingTimeInterval:(five.timeIntervalSinceReferenceDate - today.timeIntervalSinceReferenceDate)];
+    if (!date)
+        return [NSDateFormatter localizedStringFromDate:theDate dateStyle:NSDateFormatterNoStyle timeStyle:NSDateFormatterShortStyle];
     else
         return theDate;
 }

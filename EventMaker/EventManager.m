@@ -2,8 +2,17 @@
 #import "Event.h"
 #import "Photo.h"
 
+static EventManager *inst = nil;
+
 @implementation EventManager {
     PhotoLibrary *_photoLibrary;
+}
+
+#pragma mark - Singleton
++ (EventManager *)sharedManager {
+    if (!inst)
+        inst = [[EventManager alloc] init];
+    return inst;
 }
 
 #pragma mark - Initialization
@@ -18,15 +27,18 @@
     return self;
 }
 
-#pragma mark - Load events
+#pragma mark - Event store
 - (void)loadEvents {
+    _finishedEvents = [NSMutableArray array];
+    _currentEvents = [NSMutableArray array];
     
-//    TODO: Load the finished and current events
+//    TODO: Load events
+}
+
+- (void)saveEvent:(Event *)event {
+    [_currentEvents addObject:event];
     
-    Event *finishedEvent = [[Event alloc] initEventWithName:@"finished" startDate:todaysDate(YES) andEndDate:tomorrowsDate(YES)];
-    Event *currentEvent  = [[Event alloc]  initEventWithName:@"Camping" startDate:daysAgo(3, YES) andEndDate:todaysDate(YES)];
-    _finishedEvents = [NSMutableArray arrayWithObject:finishedEvent];
-    _currentEvents = [NSMutableArray arrayWithObject:currentEvent];
+//    TODO: Save events
 }
 
 #pragma mark - Update
@@ -35,7 +47,9 @@
 }
 
 - (void)updateCurrentEvents:(NSArray *)photos {
-    // TODO: Filter old photos
+//    TODO: Filter old photos
+//    TODO: Save new photos
+    
     for (int i = 0; i < _currentEvents.count; i++) {
         Event *event = [_currentEvents objectAtIndex:i];
         [event.photos removeAllObjects]; // TEMP
