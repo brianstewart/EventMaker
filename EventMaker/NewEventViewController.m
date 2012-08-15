@@ -18,8 +18,8 @@
     // Setup default dates for the start and end
     // The start date is the next five minute interval
     // The end date is an hour after the start
-    _startDate.text = [_dateFormatter stringFromDate:nextFiveMinuteInterval(YES)];
-    _endDate.text = [_dateFormatter stringFromDate:hourFromDate(nextFiveMinuteInterval(YES), YES)];
+    _startDate.text = [_dateFormatter stringFromDate:[NSDate date]];
+    _endDate.text = [_dateFormatter stringFromDate:hourFromDate([NSDate date], YES)];
     
     // We are not showing the date picker at the beginning
     _showingDatePicker = NO;
@@ -144,6 +144,13 @@
 - (IBAction)done:(id)sender {
     NSDate *start = [_dateFormatter dateFromString:_startDate.text];
     NSDate *end = [_dateFormatter dateFromString:_endDate.text];
+    
+//    // Don't save if the start date if before now
+//    if ([start earlierDate:[NSDate date]] == start) {
+//        [[[BSAlert alloc] initWithTitle:@"No thanks" message:@"You cannot start before now" delegate:nil
+//                      cancelButtonTitle:@"Alright!" otherButtonTitles:nil] show];
+//        return;
+//    }
     
     // Don't save if the end date is before the start
     if ([start laterDate:end] == start) {

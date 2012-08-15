@@ -21,7 +21,6 @@ static EventManager *inst = nil;
     if (self) {
         _photoLibrary = [[PhotoLibrary alloc] init];
         [_photoLibrary setDelegate:self];
-        [_photoLibrary loadPhotos];
         [self loadEvents];
     }
     return self;
@@ -33,6 +32,11 @@ static EventManager *inst = nil;
     _currentEvents = [NSMutableArray array];
     
 //    TODO: Load events
+    
+    
+    // Only load photos if we need to
+    if (_currentEvents.count > 0) [_photoLibrary loadPhotos];
+    
 }
 
 - (void)saveEvent:(Event *)event {
@@ -56,6 +60,14 @@ static EventManager *inst = nil;
         for (Photo *photo in photos) {
             if ([event containsDate:[photo photoDate]])
                 [event.photos addObject:photo];
+        }
+    }
+    
+    // If any events have passed their time, then place them in the finished pile
+    for (Event *event in _currentEvents) {
+        if (![event containsDate:[NSDate date]]) {
+            [_finishedEvents addObject:event];
+            [_currentEvents removeObject:event];
         }
     }
 }

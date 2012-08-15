@@ -12,9 +12,7 @@
         if (group) {
             [group setAssetsFilter:[ALAssetsFilter allPhotos]];
             [group enumerateAssetsUsingBlock:^(ALAsset *result, NSUInteger index, BOOL *stop) {
-                if (result) {                
-                    dbgLog(@"Photo: %@",result);
-                    
+                if (result) {
                     NSString *filename = result.defaultRepresentation.filename;
                     NSDate *date = [result valueForProperty:ALAssetPropertyDate];
                     UIImage *thumbnail = [UIImage imageWithCGImage:result.thumbnail];

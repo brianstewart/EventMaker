@@ -61,6 +61,9 @@ id nextFiveMinuteInterval(BOOL date) {
     int minutes = (int)(now.timeIntervalSinceReferenceDate / 60);
     int minutesToInterval = (5 - (minutes % 5));
     
+    // If we are already on an interval than don't change the time
+    if (minutesToInterval % 5 == 0) minutesToInterval = 0;
+    
     NSDate *five = [now dateByAddingTimeInterval:(60 * minutesToInterval)];
     NSDate *theDate = [now dateByAddingTimeInterval:(five.timeIntervalSinceReferenceDate - now.timeIntervalSinceReferenceDate)];
     

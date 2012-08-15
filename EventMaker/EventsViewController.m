@@ -129,6 +129,7 @@
 }
 
 - (void)newEventViewControllerDidCancel {
+    [self.tableView reloadData];
 }
 
 @end

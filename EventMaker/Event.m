@@ -30,6 +30,13 @@
 
 #pragma mark - Contains date
 - (BOOL)containsDate:(NSDate *)date {
+    
+//    dbgLog(@"%@",date);
+//    
+//    dbgLog(@"%i",[[_eventStartDate laterDate:date] isEqualToDate:date]);
+//    dbgLog(@"%i",[[_eventEndDate laterDate:date] isEqualToDate:_eventEndDate]);
+    
+    
     if ([[_eventStartDate laterDate:date] isEqualToDate:date] && [[_eventEndDate laterDate:date] isEqualToDate:_eventEndDate])
         return YES;
     return NO;
