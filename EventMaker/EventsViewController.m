@@ -1,4 +1,5 @@
 #import "EventsViewController.h"
+#import "EventCell.h"
 #import "EventManager.h"
 #import "Event.h"
 #import "Photo.h"
@@ -41,47 +42,20 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"EventCell"];
-    
-#define kImageViewTag 99
-#define kNameTag      100
-#define kDateTag      101
-#define kPhotosTag    102
-    
-    // Grab the parts of the cell
-    UIImageView *imageView = (UIImageView *)[cell viewWithTag:kImageViewTag];
-    UILabel *name = (UILabel *)[cell viewWithTag:kNameTag];
-    UILabel *date = (UILabel *)[cell viewWithTag:kDateTag];
-    UILabel *photos = (UILabel *)[cell viewWithTag:kPhotosTag];
-    
-    // Style the image view
-//    imageView.backgroundColor = [UIColor whiteColor];
-    imageView.layer.borderColor   = [UIColor whiteColor].CGColor;
-    imageView.layer.borderWidth   = 2.0;
-    imageView.layer.shadowColor   = [UIColor blackColor].CGColor;
-    imageView.layer.shadowOpacity = 1.0;
-    imageView.layer.shadowRadius  = 2.0;
-    imageView.layer.shadowOffset  = CGSizeMake(1.0, 1.0);
+    EventCell *cell = [tableView dequeueReusableCellWithIdentifier:@"EventCell"];
     
     // Get the currect event
     Event *event;
-    if (indexPath.section == 0) {
+    if (indexPath.section == 0)
         event = [_eventManager.finishedEvents objectAtIndex:indexPath.row];
-    } else {
+    else
         event = [_eventManager.currentEvents objectAtIndex:indexPath.row];
-    }
     
-    if (event.photos.count > 0)
-        imageView.image = ((Photo *)[event.photos objectAtIndex:0]).thumbnail;
-    
-    // Add the text
-    name.text = event.name;
-    date.text = [event dateRange];
-    
-    int numberOfPhotos = event.photos.count;
-    NSString *photosString = [NSString stringWithFormat:@"%i %@",numberOfPhotos, (numberOfPhotos == 1) ? @"Photo": @"Photos"];
-    
-    photos.text = photosString;
+    cell.name.text = event.name;
+    cell.date.text = [event dateRange];
+    if (event.photos.count > 0) cell.thumbnail.image = ((Photo *)[event.photos objectAtIndex:0]).thumbnail;
+    cell.photosCount.text = [NSString stringWithFormat:@"%i",event.photos.count];
+    cell.photosIcon.image = (event.photos.count <= 1) ? [UIImage imageNamed:@"single_photo_icon.png"] : [UIImage imageNamed:@"double_photo_icon.png"];
     
     return cell;
 }
@@ -132,6 +106,15 @@
     [self.tableView reloadData];
 }
 
+#pragma mark - Actions
+- (IBAction)refresh:(id)sender {
+    [_eventManager updateEvents];
+    
+    // Refresh after a few seconds
+    [self performBlock:^{
+        [self.tableView reloadData];
+    } AfterTimeInterval:3.0];
+}
 @end
 
 

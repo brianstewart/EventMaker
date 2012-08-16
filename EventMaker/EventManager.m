@@ -28,15 +28,18 @@ static EventManager *inst = nil;
 
 #pragma mark - Event store
 - (void)loadEvents {
-    _finishedEvents = [NSMutableArray array];
+    
+    Event *finishedEvent = [[Event alloc] initEventWithName:@"Test" startDate:daysAgo(7, YES) andEndDate:daysAgo(2, YES)];
+    
+    _finishedEvents = [NSMutableArray arrayWithObject:finishedEvent];
     _currentEvents = [NSMutableArray array];
     
 //    TODO: Load events
     
     
     // Only load photos if we need to
-    if (_currentEvents.count > 0) [_photoLibrary loadPhotos];
-    
+//    if (_currentEvents.count > 0) [_photoLibrary loadPhotos];
+    [_photoLibrary loadPhotos];
 }
 
 - (void)saveEvent:(Event *)event {
@@ -56,6 +59,16 @@ static EventManager *inst = nil;
     
     for (int i = 0; i < _currentEvents.count; i++) {
         Event *event = [_currentEvents objectAtIndex:i];
+        [event.photos removeAllObjects]; // TEMP
+        for (Photo *photo in photos) {
+            if ([event containsDate:[photo photoDate]])
+                [event.photos addObject:photo];
+        }
+    }
+    
+    // TEMP PROBABLY
+    for (int i = 0; i < _finishedEvents.count; i++) {
+        Event *event = [_finishedEvents objectAtIndex:i];
         [event.photos removeAllObjects]; // TEMP
         for (Photo *photo in photos) {
             if ([event containsDate:[photo photoDate]])

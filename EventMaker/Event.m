@@ -16,9 +16,9 @@
         _photos = [NSMutableArray array];
         
         _startDate = [NSDateFormatter localizedStringFromDate:startDate dateStyle:NSDateFormatterMediumStyle
-                                                    timeStyle:NSDateFormatterShortStyle];
+                                                    timeStyle:NSDateFormatterNoStyle];
         _endDate = [NSDateFormatter localizedStringFromDate:endDate dateStyle:NSDateFormatterMediumStyle
-                                                  timeStyle:NSDateFormatterShortStyle];
+                                                  timeStyle:NSDateFormatterNoStyle];
     }
     return self;
 }
