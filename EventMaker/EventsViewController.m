@@ -103,7 +103,6 @@
 }
 
 - (void)newEventViewControllerDidCancel {
-    [self.tableView reloadData];
 }
 
 #pragma mark - Actions

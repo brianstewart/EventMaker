@@ -29,7 +29,7 @@ static EventManager *inst = nil;
 #pragma mark - Event store
 - (void)loadEvents {
     
-    Event *finishedEvent = [[Event alloc] initEventWithName:@"Test" startDate:daysAgo(7, YES) andEndDate:daysAgo(2, YES)];
+    Event *finishedEvent = [[Event alloc] initEventWithName:@"Test" startDate:daysAgo(6, YES) andEndDate:daysAgo(2, YES)];
     
     _finishedEvents = [NSMutableArray arrayWithObject:finishedEvent];
     _currentEvents = [NSMutableArray array];
@@ -77,12 +77,12 @@ static EventManager *inst = nil;
     }
     
     // If any events have passed their time, then place them in the finished pile
-    for (Event *event in _currentEvents) {
-        if (![event containsDate:[NSDate date]]) {
-            [_finishedEvents addObject:event];
-            [_currentEvents removeObject:event];
-        }
-    }
+//    for (Event *event in _currentEvents) {
+//        if (![event containsDate:[NSDate date]]) {
+//            [_finishedEvents addObject:event];
+//            [_currentEvents removeObject:event];
+//        }
+//    }
 }
 
 #pragma mark - Photo library delegate

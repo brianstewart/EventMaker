@@ -25,6 +25,18 @@
 
 #pragma mark - Date range
 - (NSString *)dateRange {
+    NSDate *now = [NSDate date];
+    int diff = timeDifference(now, _eventStartDate);
+    
+    // The event hasn't started yet
+    if ([[now laterDate:_eventStartDate] isEqualToDate:_eventStartDate]) {
+        if (diff <= 60*60*2) // 2 hours
+            return [NSString stringWithFormat:@"Starts in %@", timeApart(_eventStartDate, now)];
+    } else { // The event has started
+        if (diff <= 60*60*2)
+            return [NSString stringWithFormat:@"Ends in %@", timeApart(_eventEndDate, now)];
+    }
+    
     return [NSString stringWithFormat:@"%@ - %@",_startDate,_endDate];
 }
 

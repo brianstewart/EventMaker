@@ -73,6 +73,39 @@ id nextFiveMinuteInterval(BOOL date) {
         return theDate;
 }
 
+int timeDifference(NSDate *firstDate, NSDate *secondDate) {
+    if ([[firstDate laterDate:secondDate] isEqualToDate:firstDate])
+        return ((int)firstDate.timeIntervalSinceReferenceDate - (int)secondDate.timeIntervalSinceReferenceDate);
+    else
+        return ((int)secondDate.timeIntervalSinceReferenceDate - (int)firstDate.timeIntervalSinceReferenceDate);
+}
+
+NSString* timeApart(NSDate *firstDate, NSDate *secondDate) {
+    
+    int timeApart = timeDifference(firstDate, secondDate);
+    NSString *measurement = @"";
+    
+    dbgLog(@"time apart: %i",timeApart);
+    
+    if (timeApart < 60) {
+        timeApart = (60 - (60 - timeApart));
+        measurement = (timeApart > 1) ?  @"Seconds": @"Second";
+    } else if (timeApart < (60 * 60)) {
+        timeApart = (3600 - (3600 - (timeApart))) / 60;
+        measurement = (timeApart > 1) ?  @"Minutes": @"Minute";
+    } else if (timeApart < (60 * 60 * 24)) {
+        timeApart = (86400 - (86400 - (timeApart))) / (60*60);
+        measurement = (timeApart > 1) ?  @"Hours": @"Hour";
+    } else if (timeApart < (60 * 60 * 24 * 7)) {
+        timeApart = (604800 - (604800 - (timeApart))) / 86400;
+        measurement = (timeApart > 1) ?  @"Days": @"Day";
+    } else {
+        measurement = @"A very long time apart";
+    }
+    
+    return [NSString stringWithFormat:@"%i %@",timeApart, measurement];
+}
+
 #pragma mark - Math
 double degreesToRadians (double angle) {
     return angle * (M_PI/180);

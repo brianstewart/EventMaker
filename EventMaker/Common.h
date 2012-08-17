@@ -26,6 +26,16 @@ id hourFromDate(NSDate*, BOOL);
 // Returns the next 5 minute interval of the date
 id nextFiveMinuteInterval(BOOL);
 
+// Retuns the difference between two dates as an integer
+// Date order doesn't matter
+int timeDifference(NSDate*, NSDate*);
+
+// Returns the time difference between two dates as a string
+// Time measuring, meaning 5 days or 3 hours
+// Doesn't matter which date goes where
+NSString* timeApart(NSDate *, NSDate*);
+
+
 #pragma mark - Math
 // 2*Pi; handy for trig math
 #define M_PI_X_2 3.14159265358979323846264338327950288 * 2
